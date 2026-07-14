@@ -303,7 +303,9 @@ public class Path
    */
   private static String normalizePath(String scheme, String path) {
     // Remove duplicated slashes.
-    path = SLASHES.matcher(path).replaceAll("/");
+    if (path.contains("//")) {
+      path = SLASHES.matcher(path).replaceAll("/");
+    }
 
     // Remove backslashes if this looks like a Windows path. Avoid
     // the substitution if it looks like a non-local URI.
